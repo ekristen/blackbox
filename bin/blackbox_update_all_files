@@ -4,8 +4,12 @@
 # blackbox_update_all_files -- Decrypt then re-encrypt all files. Useful after keys are changed.
 #
 
-set -e
-blackbox_home=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+if [ -z "$BLACKBOX_HOME"]; then
+  BLACKBOX_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+fi
+
+set -e 
+blackbox_home=$BLACKBOX_HOME
 source "${blackbox_home}/_blackbox_common.sh"
 
 if [[ -z $GPG_AGENT_INFO ]]; then

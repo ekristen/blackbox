@@ -8,8 +8,12 @@
 #    blackbox_initialize
 #
 
-set -e
-blackbox_home=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+if [ -z "$BLACKBOX_HOME"]; then
+  BLACKBOX_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+fi
+
+set -e 
+blackbox_home=$BLACKBOX_HOME
 source "${blackbox_home}/_blackbox_common.sh"
 
 _determine_vcs_base_and_type  # Sets VCS_TYPE

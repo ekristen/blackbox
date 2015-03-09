@@ -9,8 +9,12 @@
 #    blackbox_removeadmin tal@example.com
 #
 
-set -e
-blackbox_home=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+if [ -z "$BLACKBOX_HOME"]; then
+  BLACKBOX_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+fi
+
+set -e 
+blackbox_home=$BLACKBOX_HOME
 source "${blackbox_home}/_blackbox_common.sh"
 source "${blackbox_home}/_stack_lib.sh"
 

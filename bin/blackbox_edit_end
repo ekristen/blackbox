@@ -4,8 +4,12 @@
 # blackbox_edit_end -- Re-encrypt file after edits.
 #
 
-set -e
-blackbox_home=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+if [ -z "$BLACKBOX_HOME"]; then
+  BLACKBOX_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+fi
+
+set -e 
+blackbox_home=$BLACKBOX_HOME
 source "${blackbox_home}/_blackbox_common.sh"
 
 unencrypted_file=$(get_unencrypted_filename "$1")

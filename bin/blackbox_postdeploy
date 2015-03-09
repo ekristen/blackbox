@@ -13,8 +13,12 @@
 # force /usr/bin and /bin to the front of the PATH.
 export PATH=/usr/bin:/bin:"$PATH"
 
-set -e
-blackbox_home=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+if [ -z "$BLACKBOX_HOME"]; then
+  BLACKBOX_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+fi
+
+set -e 
+blackbox_home=$BLACKBOX_HOME
 source "${blackbox_home}/_blackbox_common.sh"
 
 if [[ "$1" == "" ]]; then
